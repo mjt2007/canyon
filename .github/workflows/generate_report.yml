@@ -48,7 +48,7 @@ jobs:
         #
         #  * smtp://user:password@server:port
         #  * smtp+starttls://user:password@server:port
-        connection_url: smtp+starttls://${{ secrets.SMTP_USERNAME }}:${{ secrets.SMTP_PW }}@smtp.gmail.com:587
+        connection_url: smtp://${{ secrets.SMTP_USERNAME }}:${{ secrets.SMTP_PW }}@smtp.gmail.com:587
         # Required mail subject:
         subject: Canyon Bikes Report
         # Required recipients' addresses:
