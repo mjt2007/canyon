@@ -1,0 +1,40 @@
+name: Generate Canyon Bikes HTML Report
+
+on:
+  push:
+    branches:
+      - main
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to scrape"  # Optional, specify a file name
+        required: false
+  # Scheduled trigger (4 times a day)
+  schedule:
+    - cron: '0 0,6,12,18 * * *'
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        pip install pandas beautifulsoup4 requests selenium
+
+    - name: Run script
+      run: |
+        python scrape.py  # Ensure your Python script is named `script.py`
+
+    - name: Upload HTML Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: HTML Report
+        path: canyon_bikes_report.html
