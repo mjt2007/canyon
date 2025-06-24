@@ -38,3 +38,30 @@ jobs:
       with:
         name: HTML Report
         path: canyon_bikes_report.html
+    - name: Send email
+      uses: dawidd6/action-send-mail@v6
+      with:
+        # Specify connection via URL (replaces server_address, server_port, secure,
+        # username and password)
+        #
+        # Format:
+        #
+        #  * smtp://user:password@server:port
+        #  * smtp+starttls://user:password@server:port
+        connection_url: ${{secrets.MAIL_CONNECTION}}
+        # Required mail subject:
+        subject: Canyon Bikes Report
+        # Required recipients' addresses:
+        to: mjt2007@gmail.com
+        # Required sender full name (address can be skipped):
+        from: Your Mama # <user@example.com>
+        # Optional plain body:
+        body:  |
+          Hello,
+
+          Please find attached the Canyon Bikes report.
+
+          Best regards,
+          Your Automation Script
+        # Optional HTML body read from file:
+        html_body: file://canyon_bikes_report.html
