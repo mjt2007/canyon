@@ -153,9 +153,18 @@ if __name__ == '__main__':
     # # Load your HTML content either from a file or by fetching from a website
     # with open('example.html', 'r', encoding='utf-8') as file:  # Replace with your file containing HTML
     #     html_content = file.read()
-    outlet_url = "https://www.canyon.com/en-us/outlet-bikes/gravel-bikes/?prefn1=pc_rahmengroesse&prefv1=XS&srule=bestsellers_sale_CUS"
+    gravel_outlet_url = "https://www.canyon.com/en-us/outlet-bikes/gravel-bikes/?prefn1=pc_rahmengroesse&prefv1=XS&srule=bestsellers_sale_CUS"
+    road_outlet_url = "https://www.canyon.com/en-us/outlet-bikes/road-bikes/?prefn1=pc_rahmengroesse&prefv1=XS&srule=bestsellers_sale_CUS"
+    # road_url = "https://www.canyon.com/en-us/road-bikes/endurance-bikes/?prefn1=pc_rahmengroesse&prefv1=XS&srule=sort_master_availabilityUS"
+    
+    
     # Scrape Canyon gravel bikes from the outlet page
-    bikes_data = scrape_canyon_bikes(outlet_url)
+    gravel_bikes_data = scrape_canyon_bikes(gravel_outlet_url)
+    road_bikes_data = scrape_canyon_bikes(road_outlet_url)
+
+    # Combine the dataframes
+    bikes_data = pd.concat([road_bikes_data, gravel_bikes_data], ignore_index=True)
+
     # Scrape the bikes data
     # bikes_data = scrape_canyon_bikes(html_content)
     print(bikes_data)
