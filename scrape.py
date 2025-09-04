@@ -51,7 +51,7 @@ def scrape_canyon_bikes(url):
         image_url = image_tag['src'] if image_tag else "N/A"
 
         # link to full bike details page
-        link_tag = bike_tile.find('a', class_='productTileDefault__productName')
+        link_tag = bike_tile.find('a', class_='class="productTileDefault__productName link link--noUnderline js-productTileLink xlt-productTileLink"')
         bike_link = link_tag['href'] if link_tag else "N/A"
         if bike_link and bike_link.startswith('http://'):
             bike_link = bike_link.replace('http://', 'https://canyon.com/')
