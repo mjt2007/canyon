@@ -49,6 +49,11 @@ def scrape_canyon_bikes(url):
         # Extract image URL directly from the correct <img> tag
         image_tag = bike_tile.find('img', class_='picture__image productTileDefault__image')
         image_url = image_tag['src'] if image_tag else "N/A"
+
+        # link to full bike details page
+        link_tag = bike_tile.find('a', class_='productTileDefault__productName')
+        bike_link = link_tag['href'] if link_tag else "N/A"
+
         # Append extracted data
         results.append({
             "Name": name,
@@ -59,7 +64,8 @@ def scrape_canyon_bikes(url):
             "Highlights": highlights,
             "Promotion": promotion,
             "Color": color,
-            "Image URL": image_url
+            "Image URL": image_url,
+            "Bike Link": bike_link
         })
     # Convert results to a pandas DataFrame
     df = pd.DataFrame(results)
