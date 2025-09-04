@@ -123,6 +123,7 @@ def generate_html_report(df, output_file="canyon_bikes_report.html"):
                     <th>Promotion</th>
                     <th>Color</th>
                     <th>Image</th>
+                    <th>Link</th>
                 </tr>
             </thead>
             <tbody>
@@ -140,6 +141,7 @@ def generate_html_report(df, output_file="canyon_bikes_report.html"):
                     <td>{row['Promotion']}</td>
                     <td>{row['Color']}</td>
                     <td><img src="{row['Image URL']}" alt="{row['Name']}"></td>
+                    <td><a href="{row['Bike Link']}" target="_blank">View Bike</a></td>
                 </tr>
         """
     # Close HTML table and document
